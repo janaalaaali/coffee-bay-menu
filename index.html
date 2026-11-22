@@ -273,7 +273,7 @@ html[lang="ar"] .happy h2{font-family:var(--arabic);text-align:right;letter-spac
 .hc-seam{position:absolute;left:0;right:0;top:50%;height:2px;margin-top:-1px;background:rgba(255,255,255,.22);z-index:4}
 .hc-say{position:absolute;left:0;right:0;top:clamp(26px,5vh,54px);text-align:center;z-index:6;margin:0;font-family:var(--serif);font-size:clamp(20px,2.1vw,30px);line-height:1.15;letter-spacing:-.01em;text-shadow:0 2px 14px rgba(0,0,0,.35);animation:rise .9s ease var(--d3) both}
 .hc-say i{font-style:italic}
-.hc-cup{position:absolute;left:50%;top:47%;z-index:5;height:min(56%,500px);aspect-ratio:.64;transform:translate(-50%,-50%) perspective(900px) rotateY(calc(var(--mx)*12deg)) rotateX(calc(var(--my)*-6deg)) scale(calc(1 - var(--sp)*.12));transition:transform .35s ease-out}
+.hc-cup{position:absolute;left:50%;top:43%;z-index:5;height:min(52%,460px);aspect-ratio:.64;transform:translate(-50%,-50%) perspective(900px) rotateY(calc(var(--mx)*12deg)) rotateX(calc(var(--my)*-6deg)) scale(calc(1 - var(--sp)*.12));transition:transform .35s ease-out}
 .hc-drop{position:absolute;inset:0;animation:cupDrop 1.1s cubic-bezier(.2,1.3,.35,1) var(--d1) both}
 @keyframes cupDrop{from{opacity:0;transform:translateY(-70vh) rotate(-14deg)}to{opacity:1;transform:none}}
 .hc-cup img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 34px 34px rgba(0,0,0,.55));opacity:0;transform:rotateY(80deg) scale(.9);transition:transform .7s cubic-bezier(.2,1.3,.35,1),opacity .3s}
@@ -290,9 +290,9 @@ html[lang="ar"] .hc-name{letter-spacing:0;font-family:var(--arabic)}
 .hc-name span::before{content:"·";position:absolute;left:0;right:0;text-align:center;animation:dotOut .35s ease calc(var(--d3) + var(--i)*45ms) both}
 @keyframes spellIn{0%{opacity:0;filter:blur(6px);transform:translateY(6px)}100%{opacity:1;filter:none;transform:none}}
 @keyframes dotOut{0%{opacity:1;color:#fff}100%{opacity:0}}
-.hc-desc{font-size:13.5px!important;opacity:.85;max-width:44ch!important;min-height:2.8em}
+.hc-desc{font-size:15px!important;opacity:.9;max-width:44ch!important}
 /* orbiting word ring (dessert video ref): back half behind the cup, front half over it */
-.hc-ring{position:absolute;left:50%;top:60%;width:170%;aspect-ratio:1;transform:translate(-50%,-50%);perspective:900px;pointer-events:none}
+.hc-ring{position:absolute;left:50%;top:74%;width:150%;aspect-ratio:1;transform:translate(-50%,-50%);perspective:900px;pointer-events:none}
 .hc-ring.back{z-index:0;clip-path:inset(0 0 50% 0)}
 .hc-ring.front{z-index:4;clip-path:inset(50% 0 0 0)}
 .hc-ring .tilt{width:100%;height:100%;transform:rotateX(74deg)}
@@ -315,7 +315,7 @@ html[lang="ar"] .hc-name{letter-spacing:0;font-family:var(--arabic)}
 .hc-dots button.on{background:#fff}
 @media (max-width:760px){
   .hc{height:max(600px,calc(100svh - 96px))}
-  .hc-cup{height:46%;top:45%}
+  .hc-cup{height:42%;top:40%}
   .hc-stk{right:-26%;top:14%;width:74px}
   .hc-say{font-size:21px}
   .hc-foot p{font-size:14px}
@@ -649,12 +649,12 @@ function home(){
   };
   var ring='<div class="ringw"><svg viewBox="0 0 120 120"><defs><path id="rp2" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs><text font-family="Source Sans 3, Arial" font-size="11.5" font-weight="700" letter-spacing="2.6" fill="#fff"><textPath href="#rp2">MORE THAN COFFEE · IT\'S A GOOD TIME ·</textPath></text></svg><img src="assets/brand/c-white.png" alt=""></div>';
   var HX=window._HX=[
-    {img:'caramel-macchiato',n:'Caramel Macchiato',ar:'كراميل ماكياتو',cat:'iced-coffee',m:'macchiato'},
-    {img:'strawberry-matcha',n:'Strawberry Matcha',ar:'ماتشا فراولة',cat:'iced-matcha',m:'strawberry'},
-    {img:'kinder-frappe',n:'Kinder Frappé',ar:'فرابيه كيندر',cat:'frappes',m:'kinder'},
-    {img:'coffeebay-mocktail',n:'Coffee Bay Mocktail',ar:'موكتيل كوفي باي',cat:'mocktails',m:'coffeebay'},
-    {img:'lotus-coffee',n:'Lotus Coffee',ar:'قهوة لوتس',cat:'signature-coffee',m:'lotus'},
-    {img:'vanilla-matcha',n:'Vanilla Matcha',ar:'ماتشا فانيليا',cat:'iced-matcha',m:'vanilla'}];
+    {img:'caramel-macchiato',sd:'Espresso, vanilla & caramel over milk foam',sa:'إسبريسو وفانيليا وكراميل مع رغوة الحليب',n:'Caramel Macchiato',ar:'كراميل ماكياتو',cat:'iced-coffee',m:'macchiato'},
+    {img:'strawberry-matcha',sd:'Matcha, strawberry purée & milk cream',sa:'ماتشا وبيوريه فراولة وكريمة الحليب',n:'Strawberry Matcha',ar:'ماتشا فراولة',cat:'iced-matcha',m:'strawberry'},
+    {img:'kinder-frappe',sd:'Creamy Kinder chocolate, blended & iced',sa:'شوكولاتة كيندر كريمي مثلج',n:'Kinder Frappé',ar:'فرابيه كيندر',cat:'frappes',m:'kinder'},
+    {img:'coffeebay-mocktail',sd:'Our fruity signature mocktail',sa:'موكتيل كوفي باي المميز بالفواكه',n:'Coffee Bay Mocktail',ar:'موكتيل كوفي باي',cat:'mocktails',m:'coffeebay'},
+    {img:'lotus-coffee',sd:'Coffee with Lotus biscuit & cream',sa:'قهوة مع بسكويت لوتس وكريمة',n:'Lotus Coffee',ar:'قهوة لوتس',cat:'signature-coffee',m:'lotus'},
+    {img:'vanilla-matcha',sd:'Matcha, vanilla & milk, blended',sa:'ماتشا وفانيليا وحليب مثلج',n:'Vanilla Matcha',ar:'ماتشا فانيليا',cat:'iced-matcha',m:'vanilla'}];
   HX.forEach(function(x){ var c=CAT[x.cat]; x.p=''; if(!c) return; c.products.forEach(function(pr){pr.opts.forEach(function(o){ if(!x.p&&(o.n+' '+o.l).toLowerCase().indexOf(x.m)>=0&&o.p[0]){ x.p=o.p[0].v; x.d=o.d; x.da=o.da; } })}); if(!x.p&&c.from) x.p=c.from; });
   var nm=function(x){return esc(ar()?x.ar:x.n)};
   var TEX=[['beans','crema'],['ice','silver'],['layers','ice']];
@@ -669,7 +669,7 @@ function home(){
       '<div class="hc-ring front" aria-hidden="true"><div class="tilt"><svg viewBox="0 0 200 200"><defs><path id="hcR2" d="M100 100m-86 0a86 86 0 1 1 172 0a86 86 0 1 1-172 0"/></defs><text><textPath href="#hcR2" textLength="535" lengthAdjust="spacing">'+T('MORE THAN COFFEE · GOOD TIME · ','MORE THAN COFFEE · GOOD TIME · ')+'</textPath></text></svg></div></div>'+
       '<a class="hc-stk" id="hcStk" href="#'+HX[0].cat+'"><small>EGP</small><b>'+HX[0].p+'</b><small>'+T('only','بس')+'</small></a>'+
       '</div></div>'+
-    '<div class="hc-foot"><a class="hc-name" id="hcName" href="#'+HX[0].cat+'">'+spell(ar()?HX[0].ar:HX[0].n)+'</a><p class="hc-desc" id="hcDesc">'+esc(T(HX[0].d||'',HX[0].da||''))+'</p><p>'+T('To order, message us on WhatsApp or stop by our truck at Agora Mall, New Cairo.','للطلب كلمنا واتساب أو تعالى التراك بتاعنا في أجورا مول، القاهرة الجديدة.')+'</p>'+
+    '<div class="hc-foot"><a class="hc-name" id="hcName" href="#'+HX[0].cat+'">'+spell(ar()?HX[0].ar:HX[0].n)+'</a><p class="hc-desc" id="hcDesc">'+esc(T(HX[0].sd,HX[0].sa))+'</p>'+
       '<div class="hc-btns"><a href="#menus">'+T('See the menu','شوف المنيو')+' <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 4v16M5 13l7 7 7-7"/></svg></a><a class="g" target="_blank" rel="noopener" href="https://wa.me/'+D.wa+'">'+T('WhatsApp','واتساب')+'</a></div></div>'+
     '<div class="hc-dots" id="hcDots">'+HX.map(function(x,i){return '<button type="button" aria-label="'+esc(x.n)+'" data-i="'+i+'"'+(i?'':' class="on"')+'></button>'}).join('')+'</div>'+
     '</section>';
@@ -810,7 +810,7 @@ function hcGo(i){ var HX=window._HX, c=document.getElementById('hc'); if(!c||!HX
   var imgs=c.querySelectorAll('.hc-cup img'); imgs[old].classList.remove('on'); imgs[old].classList.add('leave'); setTimeout(function(){imgs[old].classList.remove('leave')},500);
   setTimeout(function(){ imgs[i].classList.add('on'); },220);
   var st=document.getElementById('hcStk'); st.href='#'+x.cat; st.querySelector('b').textContent=x.p; st.classList.remove('bump'); void st.offsetWidth; st.classList.add('bump');
-  var nmEl=document.getElementById('hcName'); nmEl.href='#'+x.cat; nmEl.style.setProperty('--d3','0s'); nmEl.innerHTML=window._spell(ar()?x.ar:x.n); var dEl=document.getElementById('hcDesc'); if(dEl) dEl.textContent=(ar()?x.da:x.d)||'';
+  var nmEl=document.getElementById('hcName'); nmEl.href='#'+x.cat; nmEl.style.setProperty('--d3','0s'); nmEl.innerHTML=window._spell(ar()?x.ar:x.n); var dEl=document.getElementById('hcDesc'); if(dEl) dEl.textContent=ar()?x.sa:x.sd;
   document.querySelectorAll('#hcDots button').forEach(function(b,k){b.classList.toggle('on',k===i)});
   if(imgs[(i+1)%HX.length]) imgs[(i+1)%HX.length].loading='eager';
 }

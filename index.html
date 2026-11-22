@@ -221,7 +221,7 @@ html[lang="ar"] .happy h2{font-family:var(--arabic);text-align:right;letter-spac
 .hc-foam{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1}
 .hc-pour{position:absolute;left:24%;top:-2px;width:clamp(10px,1.2vw,18px);height:58%;z-index:2;filter:drop-shadow(0 0 6px rgba(70,30,8,.6));transform-origin:top;animation:pourIn .9s cubic-bezier(.3,0,.2,1) calc(var(--d1) + .6s) both}
 .hc-crema{position:absolute;inset:0;overflow:hidden}
-.hc-crema img{width:100%;height:100%;object-fit:cover;filter:brightness(.9) saturate(1.1);transform-origin:24% 0;animation:cremaFlow 22s ease-in-out infinite alternate}
+.hc-crema img{width:100%;height:100%;object-fit:cover;filter:blur(3px) brightness(.5) contrast(1.5) saturate(1.3);transform-origin:24% 0;animation:cremaFlow 22s ease-in-out infinite alternate}
 @keyframes cremaFlow{0%{transform:scale(1.25) translateX(0) rotate(0)}50%{transform:scale(1.4) translateX(-6%) rotate(1.5deg)}100%{transform:scale(1.3) translateX(-12%) rotate(-1deg)}}
 .hc-pour i{position:absolute;inset:0;border-radius:45% 45% 50% 50%/10% 10% 50% 50%;background:linear-gradient(90deg,#1e0c04 0%,#5a2a0c 22%,#a8622a 46%,#e0a464 52%,#7a3c12 64%,#2a1206 100%);-webkit-mask-image:linear-gradient(#000 0 82%,transparent);mask-image:linear-gradient(#000 0 82%,transparent)}
 .hc-pour::before{content:"";position:absolute;inset:0;z-index:1;border-radius:inherit;background:repeating-linear-gradient(180deg,rgba(255,230,190,0) 0 14px,rgba(255,230,190,.22) 14px 17px,rgba(255,230,190,0) 17px 34px);background-size:100% 68px;animation:pourFlow .35s linear infinite;-webkit-mask-image:linear-gradient(#000 0 80%,transparent);mask-image:linear-gradient(#000 0 80%,transparent)}
@@ -281,7 +281,27 @@ html[lang="ar"] .happy h2{font-family:var(--arabic);text-align:right;letter-spac
 .hc-stk b{font-size:clamp(22px,2.2vw,30px);letter-spacing:-.03em}
 .hc-stk small{font-size:10px;letter-spacing:.08em;opacity:.9}
 .hc-stk.bump{animation:bump .6s cubic-bezier(.2,1.6,.3,1)}
-.hc-name{display:block;white-space:nowrap;font-family:var(--serif);font-style:italic;font-size:clamp(18px,1.6vw,22px);text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.hc-name{display:block;white-space:nowrap;font-family:var(--sans);font-weight:600;text-transform:uppercase;letter-spacing:.32em;font-size:clamp(17px,1.6vw,22px);text-shadow:0 2px 12px rgba(0,0,0,.5);margin-right:-.32em}
+html[lang="ar"] .hc-name{letter-spacing:0;font-family:var(--arabic)}
+.hc-name span{display:inline-block;position:relative;animation:spellIn .55s cubic-bezier(.2,.7,.2,1) calc(var(--d3) + var(--i)*45ms) both}
+.hc-name span.sp{width:.4em}.hc-name span.sp::before{content:none}
+.hc-name span::before{content:"·";position:absolute;left:0;right:0;text-align:center;animation:dotOut .35s ease calc(var(--d3) + var(--i)*45ms) both}
+@keyframes spellIn{0%{opacity:0;filter:blur(6px);transform:translateY(6px)}100%{opacity:1;filter:none;transform:none}}
+@keyframes dotOut{0%{opacity:1;color:#fff}100%{opacity:0}}
+.hc-desc{font-size:13.5px!important;opacity:.85;max-width:44ch!important;min-height:2.8em}
+/* orbiting word ring (dessert video ref): back half behind the cup, front half over it */
+.hc-ring{position:absolute;left:50%;top:60%;width:170%;aspect-ratio:1;transform:translate(-50%,-50%);perspective:900px;pointer-events:none}
+.hc-ring.back{z-index:0;clip-path:inset(0 0 50% 0)}
+.hc-ring.front{z-index:4;clip-path:inset(50% 0 0 0)}
+.hc-ring .tilt{width:100%;height:100%;transform:rotateX(74deg)}
+.hc-ring svg{width:100%;height:100%;animation:ringSpin 14s linear infinite;overflow:visible}
+.hc-ring text{font-family:"Source Sans 3",Arial,sans-serif;font-weight:900;font-size:23px;fill:#f3eee6;letter-spacing:1px}
+.hc-ring.back text{fill:rgba(243,238,230,.55)}
+@keyframes ringSpin{to{transform:rotate(360deg)}}
+.hc-cup img{z-index:2}
+.hc-ring{animation:ringIn 1s ease calc(var(--d3) + .2s) both}
+@keyframes ringIn{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.hc-ring svg{animation:none}}
 .hc-foot{position:absolute;left:0;right:0;bottom:clamp(22px,4vh,44px);z-index:6;display:grid;justify-items:center;gap:10px;text-align:center;padding-inline:var(--gl);animation:rise .9s ease var(--d3) both}
 .hc-foot p{margin:0;max-width:34ch;font-size:15px;line-height:1.4;text-shadow:0 2px 12px rgba(0,0,0,.45)}
 .hc-btns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
@@ -633,19 +653,21 @@ function home(){
     {img:'coffeebay-mocktail',n:'Coffee Bay Mocktail',ar:'موكتيل كوفي باي',cat:'mocktails',m:'coffeebay'},
     {img:'lotus-coffee',n:'Lotus Coffee',ar:'قهوة لوتس',cat:'signature-coffee',m:'lotus'},
     {img:'vanilla-matcha',n:'Vanilla Matcha',ar:'ماتشا فانيليا',cat:'iced-matcha',m:'vanilla'}];
-  HX.forEach(function(x){ var c=CAT[x.cat]; x.p=''; if(!c) return; c.products.forEach(function(pr){pr.opts.forEach(function(o){ if(!x.p&&(o.n+' '+o.l).toLowerCase().indexOf(x.m)>=0&&o.p[0]) x.p=o.p[0].v; })}); if(!x.p&&c.from) x.p=c.from; });
+  HX.forEach(function(x){ var c=CAT[x.cat]; x.p=''; if(!c) return; c.products.forEach(function(pr){pr.opts.forEach(function(o){ if(!x.p&&(o.n+' '+o.l).toLowerCase().indexOf(x.m)>=0&&o.p[0]){ x.p=o.p[0].v; x.d=o.d; x.da=o.da; } })}); if(!x.p&&c.from) x.p=c.from; });
   var nm=function(x){return esc(ar()?x.ar:x.n)};
   var TEX=[['beans','crema'],['ice','silver'],['layers','ice']];
   var tex=function(n,i){return '<div class="hc-tex'+(i?'':' on')+'"><picture><source srcset="assets/textures/'+n+'.avif" type="image/avif"><img src="assets/textures/'+n+'.jpg" alt=""'+(i?' loading="lazy"':'')+'></picture></div>'};
+  var spell=window._spell=function(t){return t.split('').map(function(ch,i){return ch===' '?'<span class="sp"> </span>':'<span style="--i:'+i+'">'+esc(ch)+'</span>'}).join('')};
   var hero='<section class="hc" id="hc" style="'+vars+'">'+
-    '<div class="hc-band t"><div class="hc-tex on drift"><picture><source srcset="assets/textures/beans.avif" type="image/avif"><img src="assets/textures/beans.jpg" alt=""></picture></div></div>'+
-    '<div class="hc-band b"><div class="hc-crema"><picture><source srcset="assets/textures/crema.avif" type="image/avif"><img src="assets/textures/crema.jpg" alt=""></picture></div><canvas class="hc-foam" id="hcFoam" aria-hidden="true"></canvas><div class="hc-pour" aria-hidden="true"><i></i></div></div>'+
+    '<div class="hc-band t"><div class="hc-tex on drift"><picture><source srcset="assets/textures/pile.avif" type="image/avif"><img src="assets/textures/pile.jpg" alt=""></picture></div></div>'+
+    '<div class="hc-band b"><div class="hc-crema"><picture><source srcset="assets/textures/crema.avif" type="image/avif"><img src="assets/textures/crema.jpg" alt=""></picture></div></div>'+
     '<div class="hc-seam"></div>'+
     '<p class="hc-say">'+T('More than coffee,<br><i>it\'s a good time.</i>','أكثر من قهوة،<br><i>إنه وقت ممتع.</i>')+'</p>'+
-    '<div class="hc-cup" id="hcCup"><div class="hc-drop">'+HX.map(function(x,i){return '<img'+(i?' loading="lazy"':' class="on" fetchpriority="high"')+' src="assets/cutouts-hd/'+x.img+'.avif" alt="'+esc(x.n)+'">'}).join('')+
+    '<div class="hc-cup" id="hcCup"><div class="hc-drop">'+'<div class="hc-ring back" aria-hidden="true"><div class="tilt"><svg viewBox="0 0 200 200"><defs><path id="hcR1" d="M100 100m-86 0a86 86 0 1 1 172 0a86 86 0 1 1-172 0"/></defs><text><textPath href="#hcR1" textLength="535" lengthAdjust="spacing">'+T('MORE THAN COFFEE · GOOD TIME · ','MORE THAN COFFEE · GOOD TIME · ')+'</textPath></text></svg></div></div>'+HX.map(function(x,i){return '<img'+(i?' loading="lazy"':' class="on" fetchpriority="high"')+' src="assets/cutouts-hd/'+x.img+'.avif" alt="'+esc(x.n)+'">'}).join('')+
+      '<div class="hc-ring front" aria-hidden="true"><div class="tilt"><svg viewBox="0 0 200 200"><defs><path id="hcR2" d="M100 100m-86 0a86 86 0 1 1 172 0a86 86 0 1 1-172 0"/></defs><text><textPath href="#hcR2" textLength="535" lengthAdjust="spacing">'+T('MORE THAN COFFEE · GOOD TIME · ','MORE THAN COFFEE · GOOD TIME · ')+'</textPath></text></svg></div></div>'+
       '<a class="hc-stk" id="hcStk" href="#'+HX[0].cat+'"><small>EGP</small><b>'+HX[0].p+'</b><small>'+T('only','بس')+'</small></a>'+
       '</div></div>'+
-    '<div class="hc-foot"><a class="hc-name" id="hcName" href="#'+HX[0].cat+'">'+nm(HX[0])+'</a><p>'+T('To order, message us on WhatsApp or stop by our truck at Agora Mall, New Cairo.','للطلب كلمنا واتساب أو تعالى التراك بتاعنا في أجورا مول، القاهرة الجديدة.')+'</p>'+
+    '<div class="hc-foot"><a class="hc-name" id="hcName" href="#'+HX[0].cat+'">'+spell(ar()?HX[0].ar:HX[0].n)+'</a><p class="hc-desc" id="hcDesc">'+esc(T(HX[0].d||'',HX[0].da||''))+'</p><p>'+T('To order, message us on WhatsApp or stop by our truck at Agora Mall, New Cairo.','للطلب كلمنا واتساب أو تعالى التراك بتاعنا في أجورا مول، القاهرة الجديدة.')+'</p>'+
       '<div class="hc-btns"><a href="#menus">'+T('See the menu','شوف المنيو')+' <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 4v16M5 13l7 7 7-7"/></svg></a><a class="g" target="_blank" rel="noopener" href="https://wa.me/'+D.wa+'">'+T('WhatsApp','واتساب')+'</a></div></div>'+
     '<div class="hc-dots" id="hcDots">'+HX.map(function(x,i){return '<button type="button" aria-label="'+esc(x.n)+'" data-i="'+i+'"'+(i?'':' class="on"')+'></button>'}).join('')+'</div>'+
     '</section>';
@@ -786,7 +808,7 @@ function hcGo(i){ var HX=window._HX, c=document.getElementById('hc'); if(!c||!HX
   var imgs=c.querySelectorAll('.hc-cup img'); imgs[old].classList.remove('on'); imgs[old].classList.add('leave'); setTimeout(function(){imgs[old].classList.remove('leave')},500);
   setTimeout(function(){ imgs[i].classList.add('on'); },220);
   var st=document.getElementById('hcStk'); st.href='#'+x.cat; st.querySelector('b').textContent=x.p; st.classList.remove('bump'); void st.offsetWidth; st.classList.add('bump');
-  var nmEl=document.getElementById('hcName'); nmEl.href='#'+x.cat; nmEl.textContent=ar()?x.ar:x.n;
+  var nmEl=document.getElementById('hcName'); nmEl.href='#'+x.cat; nmEl.style.setProperty('--d3','0s'); nmEl.innerHTML=window._spell(ar()?x.ar:x.n); var dEl=document.getElementById('hcDesc'); if(dEl) dEl.textContent=(ar()?x.da:x.d)||'';
   document.querySelectorAll('#hcDots button').forEach(function(b,k){b.classList.toggle('on',k===i)});
   if(imgs[(i+1)%HX.length]) imgs[(i+1)%HX.length].loading='eager';
 }

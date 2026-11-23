@@ -274,8 +274,8 @@ html[dir="rtl"] .bagbtn{right:auto;left:max(16px,env(safe-area-inset-left,0px))}
 @keyframes toastIn{0%{opacity:0;transform:translate(-50%,20px)}12%,80%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,0)}}
 .row span.noimg{display:block;background:var(--navy) url(assets/brand/c-white.png) center/34% no-repeat}
 /* keep-going panel: scroll to the end to open the next menu / category */
-.goon{display:block;margin-top:clamp(40px,6vw,80px);min-height:72vh;background:var(--navy);color:#fff;position:relative;overflow:hidden;--gp:0}
-.goon-in{position:sticky;top:0;min-height:72vh;display:grid;place-content:center;justify-items:center;gap:14px;text-align:center;padding:40px var(--gl)}
+.goon{display:block;margin-top:clamp(28px,4vw,56px);min-height:42vh;background:var(--navy);color:#fff;position:relative;overflow:hidden;--gp:0}
+.goon-in{position:sticky;top:0;min-height:42vh;display:grid;place-content:center;justify-items:center;gap:14px;text-align:center;padding:40px var(--gl)}
 .goon small{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--silver)}
 .goon h2{margin:0;text-transform:none;color:#fff;font-family:var(--serif);font-weight:400;font-size:clamp(40px,7vw,96px);line-height:.95;letter-spacing:-.02em;transform:translateY(calc((1 - var(--gp))*40px));opacity:calc(.3 + var(--gp)*.7)}
 .goon h2 i{font-style:italic}
@@ -852,7 +852,7 @@ function route(){
   view.innerHTML=html; view.classList.remove('enter'); void view.offsetWidth; view.classList.add('enter');
   if(CAT[h]&&(CAT[h].mode==='one'||CAT[h].mode==='split')) choose(CAT[h],0,true);
   if(h==='menus'){ var t=$('#menus'); if(t) t.scrollIntoView(); } else window.scrollTo(0,0);
-  window._goFresh=false; window._goLock=performance.now()+900; clearTimeout(window._goT);
+  window._goFresh=false; window._goLock=performance.now()+500; clearTimeout(window._goT);
   storyIdx=-1; storyTick(); clearInterval(hxTimer); clearInterval(hcTimer); if(!MENU[h]&&!CAT[h]) hcStart();
   document.title=(MENU[h]?T(MENU[h].en+' '+MENU[h].sub,MENU[h].ar)+' · ':CAT[h]?T(CAT[h].en,CAT[h].ar)+' · ':'')+'Coffee Bay Menu';
 }
@@ -938,9 +938,9 @@ function storyTick(){
   var hc=document.getElementById('hc'); if(hc){ var hr=hc.getBoundingClientRect(); hc.style.setProperty('--sp',Math.min(1,Math.max(0,-hr.top/hr.height)).toFixed(3)); }
   var g=document.getElementById('goon'); if(g){ var gr=g.getBoundingClientRect(), gp=Math.min(1,Math.max(0,(innerHeight-gr.top)/gr.height)); g.style.setProperty('--gp',gp.toFixed(3));
     clearTimeout(window._goT);
-    if(gp>=.97&&scrollY>120&&window._goFresh){ g.classList.add('go');
+    if(gp>=.9&&scrollY>120&&window._goFresh){ g.classList.add('go');
       window._goT=setTimeout(function(){ if(document.getElementById('goon')!==g||!window._goFresh) return; var r2=g.getBoundingClientRect();
-        if(r2.bottom<=innerHeight+40){ window._goFresh=false; location.hash=g.getAttribute('href'); } else g.classList.remove('go'); },650);
+        if(r2.bottom<=innerHeight+40){ window._goFresh=false; location.hash=g.getAttribute('href'); } else g.classList.remove('go'); },220);
     } else g.classList.remove('go'); }
   var pc=document.getElementById('pcard'); if(pc&&!pc.classList.contains('in')&&pc.getBoundingClientRect().top<innerHeight*.85) pc.classList.add('in');
 }
